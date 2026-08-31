@@ -1,0 +1,32 @@
+services:
+  # ── Backend: Node/Express REST API ───────────────────────────
+  - type: web
+    name: recipe-book-api
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false          # ← You will paste your MongoDB Atlas URI in Render dashboard
+      - key: FRONTEND_URL
+        sync: false          # ← You will paste your frontend Render URL after it deploys
+
+  # ── Frontend: React Static Site ──────────────────────────────
+  - type: web
+    name: recipe-book-ui
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        sync: false          # ← You will paste your backend Render URL after it deploys
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

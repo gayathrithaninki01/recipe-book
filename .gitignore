@@ -1,0 +1,15 @@
+# Root .gitignore
+node_modules/
+.env
+.DS_Store
+*.log
+
+# Frontend build output
+frontend/dist/
+frontend/.env.local
+
+# Backend uploads (optional - keep if you want sample images)
+# backend/uploads/*
+
+# Editor
+.vscode/settings.json
