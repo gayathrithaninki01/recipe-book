@@ -112,7 +112,12 @@ export default function RecipeModal({ recipe, onClose, onSave }) {
       <div className="modal">
         <div className="modal-header">
           <h2>{recipe ? 'Edit Recipe' : 'Add New Recipe'}</h2>
-          <button className="modal-close" onClick={onClose}>✕</button>
+          <button className="modal-close" onClick={onClose} title="Close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
 
         <form className="modal-body" onSubmit={handleSubmit}>
@@ -167,11 +172,22 @@ export default function RecipeModal({ recipe, onClose, onSave }) {
               <input className="input flex-1" placeholder="Ingredient name *" value={ing.name}
                 onChange={(e) => updateIngredient(idx, 'name', e.target.value)} />
               {form.ingredients.length > 1 && (
-                <button type="button" className="remove-btn" onClick={() => removeIngredient(idx)}>✕</button>
+                <button type="button" className="remove-btn" onClick={() => removeIngredient(idx)} title="Remove ingredient">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
               )}
             </div>
           ))}
-          <button type="button" className="add-row-btn" onClick={addIngredient}>+ Add Ingredient</button>
+          <button type="button" className="add-row-btn" onClick={addIngredient}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }}>
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Ingredient
+          </button>
 
           {/* Steps */}
           <label>Preparation Steps</label>
@@ -186,11 +202,22 @@ export default function RecipeModal({ recipe, onClose, onSave }) {
                 onChange={(e) => updateStep(idx, e.target.value)}
               />
               {form.steps.length > 1 && (
-                <button type="button" className="remove-btn" onClick={() => removeStep(idx)}>✕</button>
+                <button type="button" className="remove-btn" onClick={() => removeStep(idx)} title="Remove step">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
               )}
             </div>
           ))}
-          <button type="button" className="add-row-btn" onClick={addStep}>+ Add Step</button>
+          <button type="button" className="add-row-btn" onClick={addStep}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }}>
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Step
+          </button>
 
           {/* Actions */}
           <div className="modal-footer">
