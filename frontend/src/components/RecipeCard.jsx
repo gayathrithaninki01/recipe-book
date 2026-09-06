@@ -8,18 +8,20 @@ export default function RecipeCard({ recipe, onEdit, onDelete, onView }) {
   return (
     <div className="recipe-card">
       <div className="card-header">
-        <div>
+        <div style={{ flex: 1, paddingRight: '8px' }}>
           <h3 className="card-title">{title}</h3>
           <div className="card-meta">
             <span className="card-category">{category}</span>
-            <button className="icon-btn edit-icon" title="Edit" onClick={() => onEdit(recipe)}>
-              ✏️
-            </button>
           </div>
         </div>
-        <button className="icon-btn view-icon" title="View" onClick={() => onView(recipe)}>
-          ↗
-        </button>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          <button className="icon-btn edit-icon" title="Edit Recipe" onClick={() => onEdit(recipe)}>
+            ✏️
+          </button>
+          <button className="icon-btn view-icon" title="View Details" onClick={() => onView(recipe)}>
+            ↗
+          </button>
+        </div>
       </div>
 
       <div className="card-image-wrapper" onClick={() => onView(recipe)}>
@@ -36,18 +38,22 @@ export default function RecipeCard({ recipe, onEdit, onDelete, onView }) {
         <ul>
           {(ingredients || []).slice(0, 6).map((ing, i) => (
             <li key={i}>
-              {ing.quantity && `${ing.quantity} `}{ing.unit && `${ing.unit} `}{ing.name}
+              <span>
+                {ing.quantity && <strong>{ing.quantity} </strong>}
+                {ing.unit && <span>{ing.unit} </span>}
+                {ing.name}
+              </span>
             </li>
           ))}
           {ingredients && ingredients.length > 6 && (
-            <li className="more-ingredients">+{ingredients.length - 6} more...</li>
+            <li className="more-ingredients">+{ingredients.length - 6} more ingredients...</li>
           )}
         </ul>
       </div>
 
       <div className="card-actions">
-        <button className="btn btn-edit" onClick={() => onEdit(recipe)}>Edit</button>
-        <button className="btn btn-delete" onClick={() => onDelete(recipe._id)}>Delete</button>
+        <button className="btn btn-edit" onClick={() => onEdit(recipe)}>✏️ Edit</button>
+        <button className="btn btn-delete" onClick={() => onDelete(recipe._id)}>🗑️ Delete</button>
       </div>
     </div>
   );

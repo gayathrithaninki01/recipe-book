@@ -6,19 +6,10 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware — allow localhost dev + Render production frontend
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5173',
-  process.env.FRONTEND_URL, // e.g. https://recipe-book-ui.onrender.com
-].filter(Boolean);
-
+// Middleware — CORS enabled for all origins (supports localhost & Render deployments)
 app.use(
   cors({
-    origin: (origin, cb) => {
-      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
-      cb(new Error(`CORS blocked: ${origin}`));
-    },
+    origin: true,
     credentials: true,
   })
 );

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_BASE = `${import.meta.env.VITE_API_URL || ''}/api/recipes`;
+const rawBaseUrl = import.meta.env.VITE_API_URL || '';
+const cleanBaseUrl = rawBaseUrl.replace(/\/+$/, '');
+const API_BASE = `${cleanBaseUrl}/api/recipes`;
 
 export const getRecipes = (params = {}) =>
   axios.get(API_BASE, { params }).then((r) => r.data);

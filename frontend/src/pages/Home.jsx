@@ -35,7 +35,8 @@ export default function Home() {
       const data = await getRecipes(params);
       setRecipes(data.data || []);
     } catch (err) {
-      setError('Failed to load recipes. Make sure the backend is running.');
+      console.error('Error fetching recipes:', err);
+      setError('Unable to reach backend. If hosted on Render (free tier), it may take ~30-50 seconds to wake up from sleep. Please wait a moment and click Retry.');
     } finally {
       setLoading(false);
     }
